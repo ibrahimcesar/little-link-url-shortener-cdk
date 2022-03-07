@@ -14,32 +14,7 @@ const arr = [
     code: "aws/compliance",
     url: "https://docs.aws.amazon.com/whitepapers/latest/aws-risk-and-compliance/welcome.html",
     project: "livro-aws",
-  },
-  {
-    code: "aws/privacidade",
-    url: "https://aws.amazon.com/pt/compliance/brazil-data-privacy/(https://aws.amazon.com/pt/compliance/brazil-data-privacy/",
-    project: "livro-aws",
-  },
-  {
-    code: "aws/root-user",
-    url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html",
-    project: "livro-aws",
-  },
-  {
-    code: "aws/infra",
-    url: "https://infrastructure.aws",
-    project: "livro-aws",
-  },
-  {
-    code: "aws/responsabilidade",
-    url: "https://aws.amazon.com/pt/compliance/shared-responsibility-model",
-    project: "livro-aws",
-  },
-  {
-    code: "aws/termos",
-    url: "https://aws.amazon.com/pt/aispl/service-terms/",
-    project: "livro-aws",
-  },
+  }
 ];
 
 function add(code: string, url: string, project: string) {
