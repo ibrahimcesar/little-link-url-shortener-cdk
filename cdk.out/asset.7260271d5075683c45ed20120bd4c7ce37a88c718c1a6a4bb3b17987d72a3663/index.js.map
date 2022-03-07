@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../lambda/index.ts", "../lambda/redirect.ts"],
+  "sourcesContent": ["export { handler as redirectHandler } from \"./redirect\";\n", "//const AWS = require(\"aws-sdk\");\n\nimport { Handler } from \"aws-lambda\";\n// import { getDestination } from \"./db\";\n\nexport const handler: Handler = async event => {\n  console.log(event);\n  // const response = {\n  //   statusCode: 301,\n  //   headers: {\n  //     Location: \"https://google.com/\",\n  //   },\n  // };\n\n  // try {\n  //   const hasMapped = await getDestination(event.path);\n  //   console.log(`hasMapped: ${hasMapped}`);\n  // } catch (err) {\n  //   console.error(err);\n  // }\n\n  const response = {\n    statusCode: 200,\n    body: `${event.path}`,\n  };\n\n  return response;\n};\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;;;ACKO,IAAM,UAAmB,OAAM,UAAS;AAC7C,UAAQ,IAAI;AAeZ,QAAM,WAAW;AAAA,IACf,YAAY;AAAA,IACZ,MAAM,GAAG,MAAM;AAAA;AAGjB,SAAO;AAAA;",
+  "names": []
+}
