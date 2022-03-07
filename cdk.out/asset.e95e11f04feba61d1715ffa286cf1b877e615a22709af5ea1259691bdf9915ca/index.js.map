@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../lambda/index.ts", "../lambda/redirect.ts"],
-  "sourcesContent": ["export { handler as redirectHandler } from \"./redirect\";\n", "import { Handler } from \"aws-lambda\";\n\nexport const handler: Handler = async event => {\n  console.log(event.path);\n  const response = {\n    statusCode: 301,\n    headers: {\n      Location: \"https://google.com\",\n    },\n  };\n\n  return response;\n};\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;;;ACEO,IAAM,UAAmB,OAAM,UAAS;AAC7C,UAAQ,IAAI,MAAM;AAClB,QAAM,WAAW;AAAA,IACf,YAAY;AAAA,IACZ,SAAS;AAAA,MACP,UAAU;AAAA;AAAA;AAId,SAAO;AAAA;",
-  "names": []
-}
