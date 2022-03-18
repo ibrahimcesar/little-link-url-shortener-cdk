@@ -1,6 +1,4 @@
 // Handy and manual util for add new domains through an array
-import * as dotenv from "dotenv";
-
 const AWS = require("aws-sdk");
 const { DynamoDB } = require("aws-sdk");
 
@@ -24,39 +22,9 @@ interface IRedirect {
 
 const arr = [
   {
-    code: "conway",
-    url: "http://www.melconway.com/Home/Committees_Paper.html",
-    project: "arch",
-  },
-  {
-    code: "mud",
-    url: "http://www.laputan.org/mud/",
-    project: "arch",
-  },
-  {
-    code: "aws/azure",
-    url: "https://www.microsoft.com/azure/partners/well-architected",
-    project: "livro-aws",
-  },
-  {
-    code: "aws/google",
-    url: "https://cloud.google.com/architecture/framework",
-    project: "livro-aws",
-  },
-  {
-    code: "aws/alibaba",
-    url: "https://www.alibabacloud.com/architecture/index",
-    project: "livro-aws",
-  },
-  {
-    code: "aws/oracle",
-    url: "https://docs.oracle.com/en/solutions/oci-best-practices/",
-    project: "livro-aws",
-  },
-  {
-    code: "aws",
-    url: "https://livroaws.ibrahimcesar.cloud",
-    project: "livro-aws",
+    code: "",
+    url: "",
+    project: "",
   },
 ];
 
