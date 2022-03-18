@@ -1,8 +1,11 @@
 import { buildSync } from "esbuild";
 import { App } from "aws-cdk-lib";
-import { UrlShortener } from "./stack";
+import { ShortUrlsStack } from "./stack";
+import * as dotenv from "dotenv";
 
 import path from "path";
+
+dotenv.config();
 
 buildSync({
   bundle: true,
@@ -16,11 +19,14 @@ buildSync({
 });
 
 const app = new App();
-new UrlShortener(app, "UrlShortener", {
-  description: "Minimal framework to run my own url shortener",
-  stackName: "UrlStack",
+new ShortUrlsStack(app, `${process.env.STACK_PROJECT}`, {
+  description: `${process.env.STACK_DESCRIPTION}`,
+  stackName: `${process.env.STACK_NAME}`,
   env: {
-    region: "us-east-2",
+    region: `${process.env.AWS_REGION}`,
+  },
+  tags: {
+    project: `${process.env.STACK_PROJECT}`,
   },
 });
 

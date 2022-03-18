@@ -1,8 +1,7 @@
 const { DynamoDB } = require("aws-sdk");
-
 const dynamoDB = new DynamoDB.DocumentClient({
   params: {
-    TableName: "UrlsTable",
+    TableName: `${process.env.TABLE_NAME}`,
   },
 });
 
@@ -13,7 +12,6 @@ const addDestination = async (
 ) => {
   return dynamoDB
     .update({
-      TableName: "UrlsTable",
       Key: {
         pk: code,
       },

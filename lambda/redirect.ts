@@ -1,5 +1,3 @@
-//const AWS = require("aws-sdk");
-
 import { Handler } from "aws-lambda";
 import { getDestination, updateHits } from "./db";
 
@@ -10,7 +8,7 @@ export const handler: Handler = async event => {
   const responseFallback = (response = {
     statusCode: 301,
     headers: {
-      "Location": "https://ibrahimcesar.cloud",
+      "Location": `${process.env.FALLBACK_URL}`,
       "Cache-Control": "max-age=86400",
     },
   });

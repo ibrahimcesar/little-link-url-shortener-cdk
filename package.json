@@ -1,15 +1,16 @@
 {
   "name": "url-shortener",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "cdk:deploy": "cdk deploy --profile cdk"
+    "cdk:deploy": "cdk deploy --profile cdk-iac"
   },
   "dependencies": {
-    "aws-lambda": "^1.0.7"
+    "aws-lambda": "^1.0.7",
+    "dotenv": "^16.0.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.92",

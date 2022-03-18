@@ -1,48 +1,66 @@
+// Handy and manual util for add new domains through an array
+import * as dotenv from "dotenv";
+
 const AWS = require("aws-sdk");
 const { DynamoDB } = require("aws-sdk");
-const credentials = new AWS.SharedIniFileCredentials({ profile: "cdk" });
+
+dotenv.config();
+const credentials = new AWS.SharedIniFileCredentials({
+  profile: `${process.env.AWS_PROFILE}`,
+});
 AWS.config.credentials = credentials;
 const dynamoDB = new DynamoDB.DocumentClient({
-  region: "us-east-2",
+  region: `${process.env.AWS_REGION}`,
   params: {
-    TableName: "UrlsTable",
+    TableName: `${process.env.TABLE_NAME}`,
   },
 });
 
+interface IRedirect {
+  code: string;
+  url: string;
+  project: string;
+}
+
 const arr = [
   {
-    code: "aws/compliance",
-    url: "https://docs.aws.amazon.com/whitepapers/latest/aws-risk-and-compliance/welcome.html",
+    code: "conway",
+    url: "http://www.melconway.com/Home/Committees_Paper.html",
+    project: "arch",
+  },
+  {
+    code: "mud",
+    url: "http://www.laputan.org/mud/",
+    project: "arch",
+  },
+  {
+    code: "aws/azure",
+    url: "https://www.microsoft.com/azure/partners/well-architected",
     project: "livro-aws",
   },
   {
-    code: "aws/privacidade",
-    url: "https://aws.amazon.com/pt/compliance/brazil-data-privacy/(https://aws.amazon.com/pt/compliance/brazil-data-privacy/",
+    code: "aws/google",
+    url: "https://cloud.google.com/architecture/framework",
     project: "livro-aws",
   },
   {
-    code: "aws/root-user",
-    url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html",
+    code: "aws/alibaba",
+    url: "https://www.alibabacloud.com/architecture/index",
     project: "livro-aws",
   },
   {
-    code: "aws/infra",
-    url: "https://infrastructure.aws",
+    code: "aws/oracle",
+    url: "https://docs.oracle.com/en/solutions/oci-best-practices/",
     project: "livro-aws",
   },
   {
-    code: "aws/responsabilidade",
-    url: "https://aws.amazon.com/pt/compliance/shared-responsibility-model",
-    project: "livro-aws",
-  },
-  {
-    code: "aws/termos",
-    url: "https://aws.amazon.com/pt/aispl/service-terms/",
+    code: "aws",
+    url: "https://livroaws.ibrahimcesar.cloud",
     project: "livro-aws",
   },
 ];
 
-function add(code: string, url: string, project: string) {
+function add({ code, project, url }: IRedirect) {
   dynamoDB
     .update({
       Key: {
@@ -50,20 +68,17 @@ function add(code: string, url: string, project: string) {
       },
       ConditionExpression: "attribute_not_exists(#pk)",
       UpdateExpression:
-        "SET #longUrl = :longUrl, #hits = :hits, #project = :project, #tracking = :tracking",
-      // For consistency, always use ExpressionAttributeNames for all attributes
+        "SET #longUrl = :longUrl, #hits = :hits, #project = :project",
       ExpressionAttributeNames: {
         "#longUrl": "longUrl",
         "#hits": "hits",
         "#project": "project",
         "#pk": "pk",
-        "#tracking": "tracking",
       },
       ExpressionAttributeValues: {
         ":longUrl": url,
         ":hits": 0,
         ":project": project,
-        ":tracking": {},
       },
       ReturnConsumedCapacity: "NONE",
       ReturnValues: "ALL_NEW",
@@ -78,5 +93,9 @@ function add(code: string, url: string, project: string) {
 }
 
 arr.forEach((value, _index) => {
-  add(`${value.code}`, `${value.url}`, `${value.project}`);
+  add({
+    code: value.code,
+    url: value.url,
+    project: value.project,
+  });
 });
