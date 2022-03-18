@@ -1,7 +1,7 @@
 <div align="center">
   
-![Rabbit](./_repo.png)
+![Little Link, the Rabbit](./_repo.png)
+  
+  # Little Link, the url shortener CDK example
   
 </div>
-
-# URL Shortnener
