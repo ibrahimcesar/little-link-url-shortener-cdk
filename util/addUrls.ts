@@ -1,8 +1,10 @@
 // Handy and manual util for add new domains through an array
 const AWS = require("aws-sdk");
 const { DynamoDB } = require("aws-sdk");
+import * as dotenv from "dotenv";
 
 dotenv.config();
+
 const credentials = new AWS.SharedIniFileCredentials({
   profile: `${process.env.AWS_PROFILE}`,
 });
